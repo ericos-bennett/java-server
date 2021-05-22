@@ -1,11 +1,11 @@
 package com.example.restservice;
 
-public class Greeting {
+public class Todo {
 
 	private final long id;
 	private final String content;
 
-	public Greeting(long id, String content) {
+	public Todo(long id, String content) {
 		this.id = id;
 		this.content = content;
 	}
