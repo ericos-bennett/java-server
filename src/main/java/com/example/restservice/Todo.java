@@ -3,8 +3,8 @@ package com.example.restservice;
 public class Todo {
 
 	private final long id;
-	private final String task;
-  private final boolean isCompleted;
+	private String task;
+  private boolean isCompleted;
 
 	public Todo(long id, String task, boolean isCompleted) {
 		this.id = id;

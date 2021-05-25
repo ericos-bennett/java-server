@@ -19,7 +19,7 @@ public class TodoController {
 
 
   @GetMapping("/todos")
-  public ArrayList<Todo> todo() {
+  public ArrayList<Todo> getTodos() {
     ArrayList<Todo> todos = new ArrayList<Todo>();
     Todo testTodo = new Todo(1, "Get Todos", false);
     todos.add(testTodo);
@@ -36,5 +36,4 @@ public class TodoController {
     return new Todo(100, "Put Todos", false);
   }
   
-
 }
