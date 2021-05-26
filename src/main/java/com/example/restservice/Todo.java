@@ -8,15 +8,23 @@ import javax.persistence.Id;
 @Entity
 public class Todo {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	private String task;
   private boolean isCompleted;
 
+  public Todo() {
+  }
+
+  public Todo(String task) {
+    this.setTask(task);
+    this.setIsCompleted(false);
+  }
+
 	public Todo(String task, boolean isCompleted) {
-		this.task = task;
-    this.isCompleted = isCompleted;
+		this.setTask(task);
+    this.setIsCompleted(isCompleted);
 	}
 
   public Todo(int id, String task, boolean isCompleted) {
@@ -47,5 +55,10 @@ public class Todo {
 
   public void setIsCompleted(boolean isCompleted) {
     this.isCompleted = isCompleted;
+  }
+
+  @Override
+  public String toString() {
+      return "id: " + id + ", task: " + task + ", isCompleted: " + isCompleted ;
   }
 }

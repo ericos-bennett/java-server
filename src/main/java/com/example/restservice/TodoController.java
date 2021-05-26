@@ -1,14 +1,16 @@
 package com.example.restservice;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8080")
@@ -18,16 +20,15 @@ public class TodoController {
   TodoRepository todoRepository;
 
   @GetMapping("/todos")
-  public ArrayList<Todo> getTodos() {
-    ArrayList<Todo> todos = new ArrayList<Todo>();
-    Todo testTodo = new Todo(1, "Get Todos", false);
-    todos.add(testTodo);
-    return todos;
+  public List<Todo> getTodos() {
+    return todoRepository.findAll();
   }
 
 	@PostMapping("/todos")
-	public Todo addTodo(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return new Todo(50, "Post Todos", false);
+	public Todo addTodo(@RequestBody Map<String, String> body) {
+    String task = body.get("task");
+    System.out.println(new Todo(task));
+		return todoRepository.save(new Todo(task));
 	}
 
   @PutMapping("/todos/{id}")
