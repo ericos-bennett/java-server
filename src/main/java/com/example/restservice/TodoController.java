@@ -1,8 +1,8 @@
 package com.example.restservice;
 
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "http://localhost:8080")
 public class TodoController {
 
-	private static final String template = "Hello, %s!";
-	private final AtomicLong counter = new AtomicLong();
-
+  @Autowired
+  TodoRepository todoRepository;
 
   @GetMapping("/todos")
   public ArrayList<Todo> getTodos() {
@@ -28,7 +27,7 @@ public class TodoController {
 
 	@PostMapping("/todos")
 	public Todo addTodo(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return new Todo(counter.incrementAndGet(), String.format(template, name), false);
+		return new Todo(50, "Post Todos", false);
 	}
 
   @PutMapping("/todos/{id}")
